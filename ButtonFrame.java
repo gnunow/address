@@ -3,9 +3,9 @@ package guidemo;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.UIManager.*;
 
 
+@SuppressWarnings("serial")
 public class ButtonFrame extends JFrame {
 
 	private JPanel panel;
@@ -52,6 +52,7 @@ public class ButtonFrame extends JFrame {
 		public void actionPerformed(ActionEvent event)
 		{
 			panel.setBackground(backgroundColor);
+			System.out.println(this);
 		}
 	}
 	

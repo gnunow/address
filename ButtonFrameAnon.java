@@ -10,6 +10,7 @@ import javax.swing.*;
 public class ButtonFrameAnon extends JFrame {
 
 	private JPanel panel;
+	private JPanel secondpanel;
 	private static final int DEFAULT_WIDTH = 300;
 	private static final int DEFAULT_HEIGHT = 200;
 	
@@ -17,13 +18,20 @@ public class ButtonFrameAnon extends JFrame {
 	{
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		
+		panel = new JPanel();
+		secondpanel = new JPanel();
+		
 		// create buttons
 		makeButton("Yellow", Color.YELLOW);
 		makeButton("Blue", Color.BLUE);
 		makeButton("Red", Color.RED);
 		
+		secondpanel.add(new JButton("Hello"));
+		secondpanel.add(new JButton("World"));
+		
 		// add panel to frame
-		add(panel);
+		add(panel, BorderLayout.SOUTH);
+		add(secondpanel, BorderLayout.NORTH);
 	}
 	
 	public void makeButton(String name, final Color backgroundColor)
@@ -49,14 +57,14 @@ public class ButtonFrameAnon extends JFrame {
 	
 			@Override
 			public void run() {
-				ButtonFrame frame = new ButtonFrame();
+				ButtonFrameAnon frame = new ButtonFrameAnon();
 				
 				System.out.println(frame.getClass().getName() + " " + frame.getName());
-				System.out.println(frame.getClass() == ButtonFrame.class);
+				System.out.println(frame.getClass() == ButtonFrameAnon.class);
 				
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setVisible(true);
-				frame.setTitle("The First Simple Frame");
+				frame.setTitle("Testing Layout");
 				
 			}
 		});

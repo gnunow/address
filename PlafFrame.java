@@ -1,10 +1,12 @@
 package guidemo;
 
+import java.awt.EventQueue;
 import java.awt.event.*;
 
 import javax.swing.*;
 
 
+@SuppressWarnings("serial")
 public class PlafFrame extends JFrame {
 
 	private JPanel panel;
@@ -24,6 +26,7 @@ public class PlafFrame extends JFrame {
 	private void makeButton(String name, final String plafName)
 	{
 		JButton button = new JButton(name);
+		panel.add(button);
 		// register listener
 		button.addActionListener(new ActionListener() {
 			
@@ -33,7 +36,7 @@ public class PlafFrame extends JFrame {
 				try {
 					UIManager.setLookAndFeel(plafName);
 					SwingUtilities.updateComponentTreeUI(PlafFrame.this);
-					System.out.println(PlafFrame.this.getClass().getName());
+					System.out.println(this.getClass().getName());
 				}
 				catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +49,26 @@ public class PlafFrame extends JFrame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// event dispatch thread
+		EventQueue.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				// create frame
+				PlafFrame frame = new PlafFrame();
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setVisible(true);
+				frame.setTitle("Demo Look-and-Feel");
+				frame.addWindowListener(new WindowAdapter() 
+				{
+					@Override
+					public void windowClosing(WindowEvent e) {
+						System.exit(0);
+					}
+				});
+				
+			}
+		}); 
 
 	}
 
