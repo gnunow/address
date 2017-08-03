@@ -1,2 +1,2 @@
 # address
-A begginer tries to learn Git and Java
+A beginner tries to learn Git and Java
